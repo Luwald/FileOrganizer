@@ -140,8 +140,7 @@ config_file = "config.json"
 # Initialize the main app window
 app = ctk.CTk()
 app.geometry("1000x800")
-app.title("File organizer 1.0")
-app.iconbitmap("icon.ico")
+app.title("File organizer 1.1")
 
 buttons= ctk.CTkFrame(app)
 
