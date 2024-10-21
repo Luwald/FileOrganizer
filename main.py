@@ -28,39 +28,39 @@ def browse_directory(entry_widget):
 # Strip Creation Function
 def add_strip(path_value="", filetypes_value="", tags_value=""):
 # Label Strip Frame
-    strip = ctk.CTkFrame(strip_frame)
-    strip.pack(pady=5, padx=10, fill="x")
+    strip = ctk.CTkFrame(strip_frame,fg_color="#2C2C2C",corner_radius=8)
+    strip.pack(pady=2.5,padx=5, fill="x")
 # Directory Path Label
-    path_label = ctk.CTkLabel(strip, text="Directory Path:")
+    path_label = ctk.CTkLabel(strip, text="Directory Path:",text_color="#707070")
     path_label.pack(side="left", padx=5)
 # Entry widget for directory path
-    path_entry = ctk.CTkEntry(strip, placeholder_text="Select Directory")
+    path_entry = ctk.CTkEntry(strip, placeholder_text="Select Directory",border_color="#383838",fg_color="#383838")
     path_entry.pack(side="left", padx=5, pady=5, fill="x", expand=True)
     path_entry.insert(0, path_value)  # Preload value if provided
 # Button to browse for directory
-    browse_btn = ctk.CTkButton(strip, text="Browse", width=70, command=lambda: browse_directory(path_entry),fg_color="#707070")
+    browse_btn = ctk.CTkButton(strip, text="Browse", width=70, command=lambda: browse_directory(path_entry),fg_color="#383838",hover_color="#707070")
     browse_btn.pack(side="left", padx=5)
 # Label for file types
-    filetype_label = ctk.CTkLabel(strip, text="File Types:")
+    filetype_label = ctk.CTkLabel(strip, text="File Types:",text_color="#707070")
     filetype_label.pack(side="left", padx=5)
 # Entry widget for file types (comma-separated)
-    filetype_entry = ctk.CTkEntry(strip, placeholder_text="e.g., *.png, *.txt")
+    filetype_entry = ctk.CTkEntry(strip, placeholder_text="e.g., *.png, *.txt",border_color="#383838",fg_color="#383838")
     filetype_entry.pack(side="left", padx=5, pady=5, fill="x", expand=True)
     filetype_entry.insert(0, filetypes_value)  # Preload value if provided
 
 # Label for tags
-    tags_label = ctk.CTkLabel(strip, text="Tags:")
+    tags_label = ctk.CTkLabel(strip, text="Tags:",text_color="#707070")
     tags_label.pack(side="left", padx=5)
 
 # Entry widget for tags (comma-separated)
-    tags_entry = ctk.CTkEntry(strip, placeholder_text="e.g., project, work")
+    tags_entry = ctk.CTkEntry(strip, placeholder_text="e.g., project, work",border_color="#383838",fg_color="#383838")
     tags_entry.pack(side="left", padx=5, pady=5, fill="x", expand=True)
     tags_entry.insert(0, tags_value)  # Preload value if provided
 
 # Store references to the path and file types
     strips.append({"path_entry": path_entry, "filetype_entry": filetype_entry,"tags_entry":tags_entry})
 # Create a delete button to remove the strip
-    delete_btn = ctk.CTkButton(strip, text="Delete", width=70, command=lambda: delete_strip(strip, strips[-1]),fg_color="#8a473e")
+    delete_btn = ctk.CTkButton(strip,  text="Remove",width=15,text_color="#b34b4b", command=lambda: delete_strip(strip, strips[-1]),fg_color="#2c2c2c",hover_color="#383838")
     delete_btn.pack(side="left", padx=5, pady=5)
 
 # Function to save the current configuration to a file
@@ -138,33 +138,32 @@ def load_config():
 config_file = "config.json"
 
 # Initialize the main app window
-app = ctk.CTk()
+app = ctk.CTk(fg_color="#191919")
 app.geometry("1000x800")
-app.title("File organizer 1.1")
+app.title("File organizer 1.2")
 
-buttons= ctk.CTkFrame(app)
+buttons= ctk.CTkFrame(app,fg_color="#2C2C2C",corner_radius=8)
 
 # Label Strip Button
-add_strip_btn = ctk.CTkButton(buttons, text="Add Directory", command=add_strip,fg_color="#65417a")
+add_strip_btn = ctk.CTkButton(buttons, text="Add Directory", command=add_strip,fg_color="#383838",hover_color="#707070")
 add_strip_btn.grid(column=5,row=0,padx=5,pady=5)
 
 # Button for saving files to config.json
-save_btn = ctk.CTkButton(buttons, text="Save Config", command=save_config,fg_color="#65417a")
-save_btn.grid(column=4,row=0,padx=5,pady=5)
+save_btn = ctk.CTkButton(buttons, text="Save Config", command=save_config,fg_color="#383838",hover_color="#707070")
+save_btn.grid(column=4,row=0,pady=5)
 
 # Button that sorts the files
-sort_btn = ctk.CTkButton(buttons, text="Organize", command=organize,fg_color="#65417a")
+sort_btn = ctk.CTkButton(buttons, text="Organize", command=organize,fg_color="#383838",hover_color="#707070")
 sort_btn.grid(column=3,row=0,padx=5,pady=5)
 
-buttons.pack(pady=5,side=ctk.TOP, fill=ctk.X)
+buttons.pack(pady=5,padx=5,side=ctk.TOP, fill=ctk.X)
 
 # Frame to hold strips
-strip_frame = ctk.CTkFrame(app)
-strip_frame.pack(pady=5, fill="both", expand=True)
+strip_frame = ctk.CTkFrame(app, fg_color="#191919")
+strip_frame.pack(pady=2.5, fill="both", expand=True)
 
 # List to store references to entry widgets for paths and file types
 strips = []
-
 # Load the config when the app starts
 load_config()
 
